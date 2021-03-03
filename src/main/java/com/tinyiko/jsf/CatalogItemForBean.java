@@ -1,5 +1,10 @@
 package com.tinyiko.jsf;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+
+@RequestScoped
+@Named
 public class CatalogItemForBean {
 	
 	private String name;
