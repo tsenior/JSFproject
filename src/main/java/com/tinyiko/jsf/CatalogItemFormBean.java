@@ -7,6 +7,8 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import com.tinyiko.CatalogItem;
+
 @SessionScoped
 @Named
 public class CatalogItemFormBean implements Serializable{
