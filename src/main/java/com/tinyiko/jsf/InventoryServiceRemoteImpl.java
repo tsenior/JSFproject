@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class InventoryServiceLocalImpl implements InventoryService {
+public class InventoryServiceRemoteImpl implements InventoryService {
 	
 	private Map<Long, InvetoryItem> inventoryItem = new HashMap<>();
 
