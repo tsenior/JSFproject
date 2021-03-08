@@ -5,8 +5,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
 
 @ApplicationScoped
+@Alternative
 public class InventoryServiceLocalImpl implements InventoryService {
 	
 	private Map<Long, InvetoryItem> inventoryItem = new HashMap<>();

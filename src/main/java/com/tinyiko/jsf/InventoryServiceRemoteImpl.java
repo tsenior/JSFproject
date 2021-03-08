@@ -5,8 +5,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
+import javax.inject.Named;
 
 @ApplicationScoped
+@Alternative
 public class InventoryServiceRemoteImpl implements InventoryService {
 	
 	private Map<Long, InvetoryItem> inventoryItem = new HashMap<>();
@@ -20,7 +23,7 @@ public class InventoryServiceRemoteImpl implements InventoryService {
 	}
 
 	private void printInventory() {
-		System.out.println("This will assist in understing sessions. - So Local inventory contains: ");
+		System.out.println("This will assist in understing sessions. - So Remote inventory contains: ");
 		
 		for(Entry<Long, InvetoryItem> entry: this.inventoryItem.entrySet()) {
 			System.out.println(entry.getValue().getName());
