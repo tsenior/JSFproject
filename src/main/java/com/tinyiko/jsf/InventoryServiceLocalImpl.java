@@ -8,12 +8,12 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
 
 @ApplicationScoped
-@Alternative
 public class InventoryServiceLocalImpl implements InventoryService {
 	
 	private Map<Long, InvetoryItem> inventoryItem = new HashMap<>();
 
 	@Override
+	@LoggingInterceptorBinding
 	public void createItem(Long catalogItemId, String name) {
 		long inventoryItemId = inventoryItem.size() + 1;
 		this.inventoryItem.put(inventoryItemId, new InvetoryItem(inventoryItemId, catalogItemId, name,0L));

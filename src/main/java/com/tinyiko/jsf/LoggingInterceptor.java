@@ -1,21 +1,23 @@
 package com.tinyiko.jsf;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import javax.interceptor.AroundInvoke;
+import javax.interceptor.Interceptor;
+import javax.interceptor.InvocationContext;
 
-import javax.interceptor.InterceptorBinding;
+@LoggingInterceptorBinding
+@Interceptor
+public class LoggingInterceptor {
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+	public LoggingInterceptor() {
+		// TODO Auto-generated constructor stub
+	}
 
-@InterceptorBinding
-@Inherited
-@Target({ TYPE, METHOD })
-@Retention(RUNTIME)
-@Documented
-public @interface LoggingInterceptor {
+	@AroundInvoke
+	public Object aroundInvoke(InvocationContext ic) throws Exception {
+		
+		System.out.println("Logging interceptor:: logging");
+		System.out.println("Method invoked is "+ ic.getMethod().getName());
+		return ic.proceed();
+	}
 
 }

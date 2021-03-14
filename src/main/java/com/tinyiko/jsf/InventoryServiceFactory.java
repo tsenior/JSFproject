@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.ws.rs.Produces;
 
-@Produces
+//@Produces disable to force InventoryServiceLocalImpl so i can see the logging function(note @Alternate removed from InventoryServiceLocalImpl as well.)
 public class InventoryServiceFactory {
 	
 	public InventoryService inventoryServiceToInvoke() {
