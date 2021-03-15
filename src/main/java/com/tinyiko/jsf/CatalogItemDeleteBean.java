@@ -1,17 +1,21 @@
 package com.tinyiko.jsf;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.tinyiko.CatalogItem;
+import com.tinyiko.CatalogLocal;
 
 @Named
-@RequestScoped
-public class CatalogItemDeleteBean {
+@ConversationScoped
+public class CatalogItemDeleteBean implements Serializable{
 	
 	private Long catalogItemId;
 
@@ -21,24 +25,25 @@ public class CatalogItemDeleteBean {
 	@Inject
 	private CatalogItemFormBean catalogItemFormBean;
 	
+	@Inject
+	private CatalogLocal catalogBean;
+	
+	@Inject
+	private Conversation conversation;
+	
 	
 	public void fetchItem() {
-		
-		List<CatalogItem> catalogItems = this.catalogItemFormBean.getCatalogItems().stream().filter(i -> {
-			return i.getItemId() == catalogItemId;
-		}).collect(Collectors.toList());
-	
-		if(catalogItems.isEmpty()) {
-			this.catalogItem = null;
-		}else {
-			this.catalogItem = catalogItems.get(0);
-		}
+		conversation.begin();
+		this.catalogItem=catalogBean.findItem(this.catalogItemId);
+
 	}
 	
 	public String removeItem() {
-		this.catalogItemFormBean.getCatalogItems().removeIf(item ->{
+		/*this.catalogItemFormBean.getCatalogItems().removeIf(item ->{
 			return item.getItemId().equals(this.catalogItemId);
-		});
+		});*/
+		this.catalogBean.deleteItem(this.catalogItem);
+		conversation.end();
 		return "list?faces-redirect=true";
 	}
 

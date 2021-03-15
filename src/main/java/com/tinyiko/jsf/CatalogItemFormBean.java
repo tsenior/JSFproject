@@ -11,6 +11,8 @@ import javax.inject.Named;
 import com.tinyiko.CatalogItem;
 import com.tinyiko.CatalogLocal;
 
+//Backing Bean
+
 @RequestScoped
 @Named
 public class CatalogItemFormBean implements Serializable{
@@ -25,6 +27,12 @@ public class CatalogItemFormBean implements Serializable{
 	
 	private List<CatalogItem> catalogItems = new ArrayList<>();
 	
+	private String searchText;
+	
+	public void searchByName() {
+		this.catalogItems = this.catalogLocalBean.searchByName(this.searchText);
+	}
+	
 	public String addItem() {
 	//	long itemId = this.catalogLocalBean.getItems().size() + 1;
 		
@@ -38,6 +46,14 @@ public class CatalogItemFormBean implements Serializable{
 	
 	public void init() {
 		this.catalogItems = this.catalogLocalBean.getItems();
+	}
+	
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
 	}
 
 	public CatalogItem getCatalogItem() {
