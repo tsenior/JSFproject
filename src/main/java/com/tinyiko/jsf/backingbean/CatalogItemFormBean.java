@@ -1,4 +1,4 @@
-package com.tinyiko.jsf;
+package com.tinyiko.jsf.backingbean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,8 +8,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.tinyiko.CatalogItem;
-import com.tinyiko.CatalogLocal;
+import com.tinyiko.ejbean.CatalogLocal;
+import com.tinyiko.entities.CatalogItem;
+import com.tinyiko.jsf.InventoryService;
 
 //Backing Bean
 

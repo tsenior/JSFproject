@@ -19,17 +19,19 @@
 		
 			<h:form>
 				<h:outputLabel value="Search by Name" />
-				<h:inputText value="searchInput" value="#{catalogItemFormBean.searchText}" />
+				<h:inputText id="searchInput" value="#{catalogItemFormBean.searchText}" />
 				<h:commandButton action="#{catalogItemFormBean.searchByName}" value="Search">
 					<f:ajax execute="searchInput" render="dataTable" />
 				</h:commandButton>
 			</h:form>	
 		
-			<h:dataTable value="#{catalogItemFormBean.catalogItems}" var="item">
+			<h:dataTable id="dataTable" value="#{catalogItemFormBean.catalogItems}" var="item">
 			
 				<h:column>
 					<f:facet name="header">Name</f:facet>
-					<h:outputText value="#{item.name}" />
+					<h:link value="#{item.name}" outcome="item">
+						<f:param name="itemId" value="#{item.itemId}"/>
+					</h:link>
 				</h:column>
 				
 				<h:column>
